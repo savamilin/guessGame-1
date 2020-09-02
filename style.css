@@ -1,0 +1,40 @@
+#game {
+    width: 500px;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#game {
+    padding: 50px;
+    box-shadow: 4px 6px #888888;
+    border: 1px solid rgb(206, 206, 206);
+    margin-top: 100px;
+}
+
+#game h1 {
+    font-size: 50px;
+    font-weight: 400;
+}
+
+#game p {
+    color: gray;
+}
+
+#game button,
+input {
+    padding: 10px;
+}
+
+#game button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+#game input {
+    background-color: white;
+    color: gray;
+}

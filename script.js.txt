@@ -1,0 +1,100 @@
+// user have 3 attemps
+var gameGuess = 3;
+
+
+function playAgain() {
+
+    document.getElementById('submit').innerHTML = 'PLAY AGAIN';
+    document.getElementById('number').disabled = true
+    document.getElementById('submit').addEventListener('click', gameEnd)
+
+}
+
+function showError(message) {
+
+    let p = document.createElement('p')
+    p.innerHTML = `<span style = 'color:red' >${message}`
+    const div = document.getElementById('answer')
+    div.appendChild(p)
+    document.getElementById('number').style.border = '1px solid red'
+}
+
+
+
+function gameEnd() {
+    window.location.reload()
+}
+
+
+function showAnswer(message, color) {
+
+    let p = document.createElement('p')
+    p.innerHTML = `<span style = 'color:${color}' >${message} </span>`
+    const div = document.getElementById('answer')
+    div.appendChild(p)
+
+    document.getElementById('number').style.border = "1px solid gray"
+}
+
+
+// when user click button
+document.getElementById('submit').addEventListener('click', game)
+
+function game() {
+
+    var value = parseInt(document.getElementById('number').value)
+    console.log('input value', value)
+
+    gameEngine(value)
+}
+
+
+function gameEngine(number) {
+
+    // clear div content after ervery click
+    document.getElementById('answer').innerHTML = ''
+
+    // generate number between 1 and 10
+    var randomNumber = Math.floor(Math.random() * 10) + 1
+
+    console.log(randomNumber)
+        // Check to see if user number is negativ or minus
+    if (number != NaN && number >= 0) {
+        // You must enter number between 1 and 10
+        if (number > 0 && number < 11) {
+            // User have 3 attemps
+            if (gameGuess > 1 && gameGuess <= 3) {
+                // if we win create message
+                if (randomNumber === number) {
+
+                    // if user won show message
+                    showAnswer(`${number} is correct number`, 'green')
+
+                    playAgain()
+
+                } else {
+                    // if user miss number
+                    gameGuess--;
+                    showAnswer(`The number: ${number} is incorect: You have:${gameGuess} left`, 'red')
+
+                }
+            } else {
+                // if youser lost show message
+                showAnswer(`Sorry game over, the correct answer was ${randomNumber}`, 'red')
+
+                playAgain()
+
+            }
+        } else {
+            // Erros
+            showError('You can not enter number bettwen 1 ond 10')
+        }
+    } else {
+
+        if (isNaN(number)) showError('You must enter the number')
+
+        else showError("You can't enter negativ number ")
+
+    }
+
+}
